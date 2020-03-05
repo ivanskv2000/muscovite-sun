@@ -5,11 +5,16 @@ from matplotlib.lines import Line2D
 import matplotlib.pyplot as plt # colormaps
 import numpy as np
 import pickle
-import pandas as pd
 import osmnx as ox
 import requests
 from colormap import rgb2hex, hex2rgb
 import calendar
+import astral
+from astral.sun import sun
+from astral.sun import azimuth
+from datetime import datetime
+import pytz
+
 
 
 month_num = 12
@@ -25,12 +30,27 @@ M = pickle.load(open('moscow_map_el.obj', 'rb'))
 
 # Load month data
 
-row = pd.read_csv('azimuth.csv').values[month_num - 1]
-rise_time = row[2]
-set_time = row[3]
-rise_angle = row[4]
-set_angle = row[5]
-month_name = calendar.month_name[month_num]
+l = astral.LocationInfo() # set location properties
+l.name = 'Moscow'            # city name
+l.region = 'Russia'          # region
+l.timezone = 'Europe/Moscow' # timezone (pytz style)
+l.latitude = lat             # latitude
+l.longitude = long           # longitude
+
+date_str = str(datetime.now().year) + '-' + str(month) + '-' + '15' # set date (based on month)
+date_obj = datetime.strptime(date_str, '%Y-%m-%d') # convert to datetime object
+s = sun(l.observer, date=date_obj) # get dictionary with solar time data
+
+rise_time_obj = s['sunrise'].astimezone(tz = pytz.timezone(l.timezone))
+set_time_obj = s['sunset'].astimezone(tz = pytz.timezone(l.timezone))
+
+rise_time = datetime.strftime(rise_time_obj, '%H:%M:%S')
+set_time = datetime.strftime(set_time_obj, '%H:%M:%S')
+
+rise_angle = azimuth(l.observer, rise_time_obj)
+set_angle = azimuth(l.observer, set_time_obj)
+
+month_name = calendar.month_name[month]
 
 # Unpack
 

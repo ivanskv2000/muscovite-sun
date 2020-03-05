@@ -9,7 +9,6 @@ import osmnx as ox
 import requests
 
 
-
 lat = 55.7518
 long = 37.6224
 distance = 2600
