@@ -28,9 +28,9 @@ for node in M.nodes():
                            str(y) + ',' + str(x) + ')&key=' + elevation_api)
     if response:
         elevation = response.json()['elevations'][0]['elevation']
-        M.node[node]['elevation'] = elevation
+        M.nodes[node]['elevation'] = elevation
     else:
-        M.node[node]['elevation'] = -9999
+        M.nodes[node]['elevation'] = -9999
         print('No response!')
 
 M = ox.elevation.add_edge_grades(M, add_absolute=True)
