@@ -6,33 +6,33 @@
 
 % TikzPoster Presets:
 
-	\definecolor{satpink}{RGB}{213, 53, 118}
-	\definecolor{backblue}{HTML}{181A34}
-	\definecolor{ppink}{HTML}{E70074}
-	\definecolor{yyellow}{HTML}{FFFE03}
-	\definecolor{blockblue}{HTML}{3A3F80}
+	\definecolor{pink_alt}{RGB}{213, 53, 118}
+	\definecolor{bg_color}{HTML}{181A34}
+	\definecolor{set_color}{HTML}{E70074}
+	\definecolor{rise_color}{HTML}{FFFE03}
+	\definecolor{no_color}{HTML}{3A3F80}
 
 	\definecolorstyle{Moscow}{
-		\colorlet{One}{satpink}
-		\colorlet{Two}{ppink}
-		\colorlet{Three}{blockblue}
+		\colorlet{One}{pink_alt}
+		\colorlet{Two}{set_color}
+		\colorlet{Three}{no_color}
 	}{
 	% Background
-		\colorlet{backgroundcolor}{backblue}
-		\colorlet{framecolor}{backblue}
+		\colorlet{backgroundcolor}{bg_color}
+		\colorlet{framecolor}{bg_color}
 	% Title
 		\colorlet{titlefgcolor}{white}
-		\colorlet{titlebgcolor}{backblue}
+		\colorlet{titlebgcolor}{bg_color}
 	% Blocks
-		\colorlet{blocktitlebgcolor}{satpink} 
+		\colorlet{blocktitlebgcolor}{pink_alt} 
 		\colorlet{blocktitlefgcolor}{white} 
-		\colorlet{blockbodybgcolor}{backblue} 
+		\colorlet{blockbodybgcolor}{bg_color} 
 		\colorlet{blockbodyfgcolor}{white}
 	% Innerblock colors 
 		\colorlet{innerblocktitlebgcolor}{white} 	\colorlet{innerblocktitlefgcolor}{black} \colorlet{innerblockbodybgcolor}{white} \colorlet{innerblockbodyfgcolor}{black}
 	% Note colors 
 		\colorlet{notefgcolor}{black} 
-		\colorlet{notebgcolor}{blockblue} 
+		\colorlet{notebgcolor}{no_color} 
 		\colorlet{notefrcolor}{white}
 	}
 
@@ -79,7 +79,7 @@
 	}
 
 
-\title{\color{yyellow} \montserratalt Moscow Sunset and Sunrise Map}
+\title{\color{rise_color} \montserratalt Moscow Sunset and Sunrise Map}
 \author{\faGithub \, ivanskv2000}
 %\titlegraphic{\includegraphics[width=0.2\linewidth]{logo_white.pdf}}
 \date{\today}
@@ -108,7 +108,7 @@
 	\begin{center}
 		\begin{minipage}{0.45\linewidth}
 			\centering
-			\begin{tikzfigure}[\color{blockblue}\montserratalt\large
+			\begin{tikzfigure}[\color{no_color}\montserratalt\large
 					January
 				]
 				\includegraphics[width=\linewidth]{map_January.pdf}
@@ -116,7 +116,7 @@
 		\end{minipage}\hfill
 		\begin{minipage}{0.45\linewidth}
 			\centering
-			\begin{tikzfigure}[\color{blockblue}\montserratalt\large
+			\begin{tikzfigure}[\color{no_color}\montserratalt\large
 					July
 				]
 				\includegraphics[width=\linewidth]{map_July.pdf}
