@@ -6,7 +6,7 @@
 
  ## Examples
 ![January version](https://upload.wikimedia.org/wikipedia/commons/4/4f/Map_January.png)
-![July version](https://upload.wikimedia.org/wikipedia/commons/4/4f/Map_July.png)
+![July version](https://upload.wikimedia.org/wikipedia/commons/1/16/Map_July.png)
 
  ## Future plans
  - Improve visualization of street grades (hypothesis: bigger grade implies better/clearer sun observation);
