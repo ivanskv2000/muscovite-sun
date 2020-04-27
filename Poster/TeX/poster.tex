@@ -1,0 +1,145 @@
+\documentclass[a2paper, 14pt, portrait, 
+					innermargin = 25mm, 
+					blockverticalspace=0.25cm]{tikzposter}
+
+\usepackage{xcolor}
+
+% TikzPoster Presets:
+
+	\definecolor{satpink}{RGB}{213, 53, 118}
+	\definecolor{backblue}{HTML}{181A34}
+	\definecolor{ppink}{HTML}{E70074}
+	\definecolor{yyellow}{HTML}{FFFE03}
+	\definecolor{blockblue}{HTML}{3A3F80}
+
+	\definecolorstyle{Moscow}{
+		\colorlet{One}{satpink}
+		\colorlet{Two}{ppink}
+		\colorlet{Three}{blockblue}
+	}{
+	% Background
+		\colorlet{backgroundcolor}{backblue}
+		\colorlet{framecolor}{backblue}
+	% Title
+		\colorlet{titlefgcolor}{white}
+		\colorlet{titlebgcolor}{backblue}
+	% Blocks
+		\colorlet{blocktitlebgcolor}{satpink} 
+		\colorlet{blocktitlefgcolor}{white} 
+		\colorlet{blockbodybgcolor}{backblue} 
+		\colorlet{blockbodyfgcolor}{white}
+	% Innerblock colors 
+		\colorlet{innerblocktitlebgcolor}{white} 	\colorlet{innerblocktitlefgcolor}{black} \colorlet{innerblockbodybgcolor}{white} \colorlet{innerblockbodyfgcolor}{black}
+	% Note colors 
+		\colorlet{notefgcolor}{black} 
+		\colorlet{notebgcolor}{blockblue} 
+		\colorlet{notefrcolor}{white}
+	}
+
+\usecolorstyle{Moscow}
+\useblockstyle{Minimal}
+
+
+% Font Presets:
+	\usepackage[defaultfam,regular,tabular,lining, bold]{montserrat}
+	\usepackage[T1]{fontenc}
+	\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TLF}\selectfont #1}}
+	\renewcommand*\familydefault{\sfdefault}
+
+	\usepackage{xpatch}
+	\xpatchcmd{\block}{\bf\LARGE\color{blocktitlefgcolor}}{\sffamily\LARGE\color{blocktitlefgcolor}}{}{} 
+
+
+% Stuff:
+	\usepackage{graphicx}
+	\usepackage{tikz}
+	\usepackage{pgfplots}
+		\pgfplotsset{compat=1.15}
+	\usepackage{pgfplotstable}
+	\usepackage{fontawesome5}
+	\usepackage{etoolbox}
+	\usepackage{soul}
+	\usepackage[colorlinks=false]{hyperref}
+
+
+% Turn off numeration of Tikz captions:
+	\renewenvironment{tikzfigure}[1][]{
+		\def \rememberparameter{#1}
+		\vspace{10pt}
+		\refstepcounter{figurecounter}
+		\begin{center}
+		}{
+			\ifx\rememberparameter\@empty
+			\else %nothing
+			\\[10pt]
+			%{\small Fig.~\thefigurecounter: \rememberparameter}
+			{\small \rememberparameter}
+			\fi
+		\end{center}
+	}
+
+
+\title{\color{yyellow} \montserratalt Moscow Sunset and Sunrise Map}
+\author{\faGithub \, ivanskv2000}
+%\titlegraphic{\includegraphics[width=0.2\linewidth]{logo_white.pdf}}
+\date{\today}
+
+
+\begin{document} 
+
+\maketitle[titletoblockverticalspace = -0.5cm]
+
+\block{Project Description}{
+		The aim of this project was to compile a Moscow map representing whether a street is appropriate for sunrise (or sunset)
+		 observation or not. Final result is based on \textbf{street azimuths} which are being compared to monthly 
+		 solar data. The output is both beautiful and functional, athough the latter still needs to be proved.
+} 
+
+\block{What's Under the Hood?}{
+	The ``artistic path'' of this project consists of several steps: data retrieval, data processing, 
+	map compilation and post-processing. Rough geospatial data is provided by \textbf{OpenStreetMap} community; 
+	solar data is computed by employing the \textit{astral} Python package. Another source is \textit{Elevation API} 
+	used for additional investigation, which is not included into the visualisations. A set 
+	of Python scripts hosted on GitHub provides a straightforward way of building the map on your own 
+	(and a precise description of the compilation process can be found in Jupyter notebook).
+} 
+
+\block{Examples}{
+	\begin{center}
+		\begin{minipage}{0.45\linewidth}
+			\centering
+			\begin{tikzfigure}[\color{blockblue}\montserratalt\large
+					January
+				]
+				\includegraphics[width=\linewidth]{map_January.pdf}
+			\end{tikzfigure}%
+		\end{minipage}\hfill
+		\begin{minipage}{0.45\linewidth}
+			\centering
+			\begin{tikzfigure}[\color{blockblue}\montserratalt\large
+					July
+				]
+				\includegraphics[width=\linewidth]{map_July.pdf}
+			\end{tikzfigure}%
+		\end{minipage}\hfill
+	\end{center}
+} 
+
+\begin{columns} 
+	\column{0.5}
+		\block{Python packages}{
+		\begin{itemize}
+			\item Boeing, G. 2017. \textit{``OSMnx: New Methods for Acquiring, Constructing, Analyzing, and Visualizing Complex Street Networks.''} Computers, Environment and Urban Systems. 65, 126-139. \href{https://doi.org/10.1016/j.compenvurbsys.2017.05.004}{doi:10.1016/j.compenvurbsys.2017.05.004}
+			\item Kennedy, S. (n. d.) \textit{Astral Python package.}  \href{https://github.com/sffjunkie/astral}{github.com/sffjunkie/astral}
+		\end{itemize} 
+	}
+	\column{0.5} 
+		\block{Spatial data sources}{
+		\begin{itemize}
+			\item OpenStreetMap contributors (2020). \textit{Moscow geospatial data.} \href{https://www.openstreetmap.org}{openstreetmap.org} 
+			\item \textit{Elevation api.} (n. d.) \href{https://elevation-api.io}{elevation-api.io}
+		\end{itemize} 
+	}
+\end{columns}
+
+\end{document}
