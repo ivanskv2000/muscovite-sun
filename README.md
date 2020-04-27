@@ -5,8 +5,11 @@
  The aim of this project was to compile a Moscow map representing whether a street is appropriate for sunrise (or sunset) observation or not. The final result is based on street azimuths that which are being compared to monthly solar data.
 
  ## Examples
-![January version](https://upload.wikimedia.org/wikipedia/commons/4/4f/Map_January.png =300)
-![July version](https://upload.wikimedia.org/wikipedia/commons/1/16/Map_July.png =300x)
+![January version](https://upload.wikimedia.org/wikipedia/commons/4/4f/Map_January.png)
+![July version](https://upload.wikimedia.org/wikipedia/commons/1/16/Map_July.png)
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Map_January.png" alt="January version" width="300"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Map_July.png" alt="July version" width="300"/>
 
  ## Future plans
  - Improve visualization of street grades (hypothesis: bigger grade implies better/clearer sun observation);
