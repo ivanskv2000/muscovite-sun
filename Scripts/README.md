@@ -1,4 +1,4 @@
-# Description
+# Python Raw Scripts
 
 Python scripts in this folder enable you to compile a street network map based on sunrise and sunset bearings.
 You can customize the appearance of map by changing defined variables, such as edge colors and widths.
