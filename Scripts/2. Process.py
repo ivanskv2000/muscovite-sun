@@ -21,25 +21,27 @@ month_num = 12
 
 rise_color = '#FFFE03' # yellow
 set_color = '#E70074'  # magenta
-no_color = '#3A3F80'   # dark-ish blue
+no_color = '#3A3F80'   # blue
 bg_color = '#181A34'   # dark blue
 
-# Load map (graph)
+
+# Load map
 
 M = pickle.load(open('moscow_map_el.obj', 'rb'))
 
+
 # Load month data
 
-l = astral.LocationInfo() # set location properties
+l = astral.LocationInfo()    # location initialization
 l.name = 'Moscow'            # city name
 l.region = 'Russia'          # region
 l.timezone = 'Europe/Moscow' # timezone (pytz style)
 l.latitude = lat             # latitude
 l.longitude = long           # longitude
 
-date_str = str(datetime.now().year) + '-' + str(month) + '-' + '15' # set date (based on month)
+date_str = str(datetime.now().year) + '-' + str(month_num) + '-' + '15' # set date (based on month)
 date_obj = datetime.strptime(date_str, '%Y-%m-%d') # convert to datetime object
-s = sun(l.observer, date=date_obj) # get dictionary with solar time data
+s = sun(l.observer, date = date_obj) # get dictionary with solar time data
 
 rise_time_obj = s['sunrise'].astimezone(tz = pytz.timezone(l.timezone))
 set_time_obj = s['sunset'].astimezone(tz = pytz.timezone(l.timezone))
@@ -50,7 +52,8 @@ set_time = datetime.strftime(set_time_obj, '%H:%M:%S')
 rise_angle = azimuth(l.observer, rise_time_obj)
 set_angle = azimuth(l.observer, set_time_obj)
 
-month_name = calendar.month_name[month]
+month_name = calendar.month_name[month_num]
+
 
 # Unpack
 
@@ -65,6 +68,7 @@ for uu, vv, ddata in M.edges(data=True):
 for item in data:
     if 'bearing' in item.keys():
         item['bearing'] = float(item['bearing'])
+
 
 # Process (set attributes)
 
@@ -96,6 +100,7 @@ for item in data:
     else:
         width = 0
     widths.append(width)
+
 
 # Save as pickle
 

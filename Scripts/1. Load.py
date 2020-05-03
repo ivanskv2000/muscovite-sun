@@ -9,18 +9,18 @@ import osmnx as ox
 import requests
 
 
-lat = 55.7518
-long = 37.6224
-distance = 2600
-elevation_api = 'dpdc1bp92p4d1VgcMg-uvifid514-t'
+lat = 55.7518   # Moscow center latitude
+long = 37.6224  # Moscow center longitude
+distance = 2600 # Area from center covered by map
 
 # Raw map
 
 M = ox.geo_utils.add_edge_bearings(
     ox.graph_from_point((lat, long), distance=distance, network_type='drive'))
 
-# Add elevation & edge grades
 
+# Add elevation & edge grades (if you wish, it is NOT used in compilation)
+'''
 for node in M.nodes():
     y = M.nodes[node]['y'] # latitude
     x = M.nodes[node]['x'] # longitude
@@ -34,6 +34,8 @@ for node in M.nodes():
         print('No response!')
 
 M = ox.elevation.add_edge_grades(M, add_absolute=True)
+'''
+
 
 # Save as pickle
 
